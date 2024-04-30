@@ -16,9 +16,7 @@ def visualizarContatos(lista):
         print("Sua lista está vazia! Vamos adicionar alguns contatos?\n")
     else:    
         print("Lista de contatos:")
-        for nome, numero in lista.items():
-            print(f"Nome: {nome}, Número: {numero}")
-        print()
+        ordenarContatos(lista)
 
 #Função atualizar contatos
 def atualizarContatos(lista):
@@ -82,6 +80,13 @@ def buscarContatos(lista):
     else:
         print("Nenhum contato foi encontrado!")
 
+#Função ordenar contatos:
+def ordenarContatos(lista):
+    listaOrdenada = sorted(lista.keys())
+    for contato in listaOrdenada:
+        numero = lista[contato]
+        print(f"Nome: {contato}, Número: {numero}\n")
+
 #Função menu principal:
 def menuPrincipal():
     try:
@@ -111,8 +116,7 @@ def menuPrincipal():
                 buscarContatos(lista)
             elif (escolha == '6'):
                 print("Finalizando programa, aqui está sua lista!\n")
-                for nome, numero in lista.items():
-                    print(f"Nome: {nome}, Número: {numero}")
+                ordenarContatos(lista)
                 break
             else:
                 print("Escola inválida. Por favor, tente novamente!\n")
