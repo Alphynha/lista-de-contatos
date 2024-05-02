@@ -87,6 +87,17 @@ def ordenarContatos(lista):
         numero = lista[contato]
         print(f"Nome: {contato}, Número: {numero}\n")
 
+#Função Salvar em Arquivo:
+def salvarContatosArquivo(lista, nomeArquivo):
+    try:
+        with open(nomeArquivo, 'w') as arquivo:
+            for nome in sorted(lista.keys()):
+                numero = lista[nome]
+                arquivo.write(f"{nome}: {numero}\n")
+            print("Contatos salvos com sucesso!")
+    except IOError:
+        print("Erro ao salvar contatos no arquivo./n")
+
 #Função menu principal:
 def menuPrincipal():
     try:
@@ -100,7 +111,7 @@ def menuPrincipal():
             print("3. Atualizar um contato")
             print("4. Visualizar lista de contatos")
             print("5. Buscar contatos")
-            print("6. Finalizar o programa")
+            print("6. Salvar lista e Finalizar o programa")
             
             escolha = input("Digite o número da sua escolha: ")
 
@@ -115,6 +126,10 @@ def menuPrincipal():
             elif(escolha == '5'):
                 buscarContatos(lista)
             elif (escolha == '6'):
+                opcao = input("Você deseja salvar seus contatos em um arquivo? (s|N)").lower()
+                if (opcao == 's'):
+                    nomeArquivo = 'contatos.txt'
+                    salvarContatosArquivo(lista, nomeArquivo)
                 print("Finalizando programa, aqui está sua lista!\n")
                 ordenarContatos(lista)
                 break
